@@ -7,3 +7,7 @@ __pycache__/
 htmlcov/
 lab-5-solutions/.venv/
 lab-5-solutions/.pytest_cache/
+
+# Healenium runtime logs
+lab-5-solutions/healenium/logs/*.log
+lab-5-solutions/healenium/logs/*.log.gz
