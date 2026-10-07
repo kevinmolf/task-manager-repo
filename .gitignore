@@ -2,3 +2,8 @@
 __pycache__/
 *.py[cod]
 .pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+lab-5-solutions/.venv/
+lab-5-solutions/.pytest_cache/
