@@ -1,0 +1,49 @@
+You are assisting with COMP 441 Software Analysis and Testing Lab 4.
+
+Generate a Requirements Traceability Matrix (RTM) from ONLY the eight requirements supplied below.
+
+IMPORTANT:
+- Do not invent requirements.
+- Preserve the exact REQ-IDs.
+- Every requirement must have at least one test case.
+- You may propose multiple test cases where useful.
+- Use system-level functional testing unless the requirement clearly requires another level.
+- Do not claim that tests were executed.
+- Use "Not Executed" as the status.
+- Include positive, negative, boundary, or performance-oriented cases where justified by the wording.
+- Make every requirement-to-test mapping defensible from the requirement itself.
+
+Required RTM columns:
+Requirement ID
+Requirement Description
+Test Case ID(s)
+Test Level
+Status
+
+SUPPLIED REQUIREMENTS:
+
+REQ-001:
+The system shall allow a new user to register with a unique email address and a password of at least 8 characters.
+
+REQ-002:
+The system shall reject registration when the email address is already in use and display an error message.
+
+REQ-003:
+The system shall allow users to search the catalogue by title, author, or ISBN and return matching results within 2 seconds.
+
+REQ-004:
+The system shall display "No results found" when a search returns no matches.
+
+REQ-005:
+A registered user shall be able to borrow up to 3 available books at a time for a 14-day loan period.
+
+REQ-006:
+The system shall prevent borrowing when the user already has 3 books on loan or an overdue item.
+
+REQ-007:
+The system shall record a return, update book availability, and calculate any overdue fine at P2.00 per day.
+
+REQ-008:
+The system shall email the user 2 days before the due date and again on each day the book is overdue.
+
+OUTPUT ONLY THE RTM TABLE AND A SHORT NOTE IDENTIFYING ANY AMBIGUITIES OR ASSUMPTIONS.

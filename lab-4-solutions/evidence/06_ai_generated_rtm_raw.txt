@@ -1,0 +1,122 @@
+Thinking...
+Thinking Process:
+
+1.  **Understand the Goal:** Generate a Requirements Traceability Matrix (R[2D[K
+(RTM) from eight specific provided requirements for a Software Analysis and[3D[K
+and Testing Lab.
+2.  **Analyze Constraints & Rules:**
+    *   Use *only* the eight supplied requirements.
+    *   Preserve exact REQ-IDs.
+    *   Every requirement must have at least one test case.
+    *   Propose multiple test cases where useful.
+    *   Use system-level functional testing.
+    *   Do not claim execution status (use "Not Executed").
+    *   Include positive, negative, boundary, or performance cases where ju[2D[K
+justified.
+    *   Mapping must be defensible.
+    *   Required Columns: Requirement ID, Requirement Description, Test Cas[3D[K
+Case ID(s), Test Level, Status.
+3.  **Analyze Requirements and Draft Test Cases (Mapping):**
+
+    *   **REQ-001:** New user registration (unique email, password >= 8 cha[3D[K
+chars).
+        *   *Test 1 (Positive):* Successful registration with valid data.
+        *   *Test 2 (Negative):* Attempt registration with non-unique email[5D[K
+email.
+        *   *Test 3 (Negative/Boundary):* Attempt registration with passwor[7D[K
+password < 8 characters.
+    *   **REQ-002:** Reject registration if email exists.
+        *   *Test 1 (Negative):* Attempt registration with an existing emai[4D[K
+email.
+    *   **REQ-003:** Search catalogue (title, author, ISBN), return results[7D[K
+results within 2 seconds.
+        *   *Test 1 (Positive):* Successful search by title/author/ISBN.
+        *   *Test 2 (Positive/Boundary):* Search for non-existent items.
+        *   *Test 3 (Performance):* Measure search time (<= 2 seconds).
+    *   **REQ-004:** Display "No results found" when search matches zero.
+        *   *Test 1 (Negative):* Execute a search with no matching items.
+    *   **REQ-005:** Borrow up to 3 available books (14-day loan).
+        *   *Test 1 (Positive):* Successfully borrow 3 available books.
+        *   *Test 2 (Boundary):* Attempt to borrow a 4th book (or more than[4D[K
+than 3).
+        *   *Test 3 (Boundary):* Attempt to borrow books that are not avail[5D[K
+available (zero availability).
+    *   **REQ-006:** Prevent borrowing if 3 books are on loan OR an overdue[7D[K
+overdue item exists.
+        *   *Test 1 (Boundary/Negative):* Attempt to borrow a 4th book when[4D[K
+when 3 are currently on loan.
+        *   *Test 2 (Negative):* Attempt to borrow a book if the user has a[1D[K
+an overdue item.
+    *   **REQ-007:** Record return, update availability, calculate overdue [K
+fine (P2.00/day).
+        *   *Test 1 (Positive):* Successful return and availability update.[7D[K
+update.
+        *   *Test 2 (Calculation):* Calculate the fine for a specifi[7D[K
+specific overdue duration.
+    *   **REQ-008:** Email notifications (2 days before due date, daily for[3D[K
+for overdue).
+        *   *Test 1 (Positive):* Verify the email notification is sent 2 da[2D[K
+days before due date.
+        *   *Test 2 (Scenario/Timing):* Verify daily notifications for over[4D[K
+overdue status.
+
+4.  **Construct the RTM Table:** Populate the data according to the require[7D[K
+required format. (Self-Correction: Ensure the test IDs are unique and defen[5D[K
+defensible.)
+
+5.  **Review and Finalize:** Check against all constraints (no invented req[3D[K
+requirements, exact IDs, status, defensibility).
+6.  **Identify Ambiguities/Assumptions:** Focus on timing (REQ-003), fine c[1D[K
+calculation (REQ-007), and the exact definition of "overdue" (REQ-006, REQ-[4D[K
+REQ-008). (This leads to the final note.) (Done)
+...done thinking.
+
+## Requirements Traceability Matrix (RTM)
+
+| Requirement ID | Requirement Description | Test Case ID(s) | Test Level |[1D[K
+| Status |
+| :--- | :--- | :--- | :--- | :--- |
+| REQ-001 | The system shall allow a new user to register with a unique ema[3D[K
+email address and a password of at least 8 characters. | TC-001, TC-002, TC[2D[K
+TC-003 | Functional | Not Executed |
+| REQ-002 | The system shall reject registration when the email address is [K
+already in use and display an error message. | TC-004 | Functional | Not Ex[2D[K
+Executed |
+| REQ-003 | The system shall allow users to search the catalogue by title, [K
+author, or ISBN and return matching results within 2 seconds. | TC-005, TC-[3D[K
+TC-006, TC-007 | Functional, Performance | Not Executed |
+| REQ-004 | The system shall display "No results found" when a search retur[5D[K
+returns no matches. | TC-008 | Functional | Not Executed |
+| REQ-005 | A registered user shall be able to borrow up to 3 available boo[3D[K
+books at a time for a 14-day loan period. | TC-010, TC-011, TC-012 | Functi[6D[K
+Functional, Boundary | Not Executed |
+| REQ-006 | The system shall prevent borrowing when the user already has 3 [K
+books on loan or an overdue item. | TC-013, TC-014 | Functional, Boundary |[1D[K
+| Not Executed |
+| REQ-007 | The system shall record a return, update book availability, and[3D[K
+and calculate any overdue fine at P2.00 per day. | TC-015, TC-016 | Functio[7D[K
+Functional | Not Executed |
+| REQ-008 | The system shall email the user 2 days before the due date and [K
+again on each day the book is overdue. | TC-017, TC-018 | Functional, Notif[5D[K
+Notification | Not Executed |
+
+***
+
+## Note on Ambiguities and Assumptions
+
+**Ambiguities/Assumptions:**
+
+1.  **Overdue Calculation (REQ-007, REQ-008):** The precise starting point [K
+and daily increment for calculating the fine (P2.00 per day) and the notifi[6D[K
+notification cycle (2 days before due date, and then daily) are assumed to [K
+be clearly defined in the system specifications, but the RTM assumes a stan[4D[K
+standard calendar day increment.
+2.  **Performance Context (REQ-003):** The "within 2 seconds" requirement ([1D[K
+(performance) is treated as an absolute latency constraint. The testing ass[3D[K
+assumes a standard load environment when measuring this performance.
+3.  **System State (REQ-006):** The test cases for preventing borrowing (RE[3D[K
+(REQ-006) assume that the system correctly maintains the state of "books on[2D[K
+on loan" and "overdue items" prior to the borrowing attempt.
+4.  **Email Delivery (REQ-008):** The test cases for email notifications as[2D[K
+assume that the system successfully interfaces with an external email servi[5D[K
+service and accurately handles the timing logic.

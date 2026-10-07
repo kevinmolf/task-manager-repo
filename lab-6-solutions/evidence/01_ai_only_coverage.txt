@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo
+configfile: pytest.ini
+plugins: cov-7.1.0
+collecting ... collected 6 items
+
+lab-6-solutions/test_ai_generated.py::test_format_task_report_multiple_tasks FAILED
+lab-6-solutions/test_ai_generated.py::test_format_task_report_empty_list PASSED
+lab-6-solutions/test_ai_generated.py::test_days_until_due_future_date PASSED
+lab-6-solutions/test_ai_generated.py::test_days_until_due_past_date PASSED
+lab-6-solutions/test_ai_generated.py::test_build_query_with_title PASSED
+lab-6-solutions/test_ai_generated.py::test_build_query_empty_title PASSED
+
+=================================== FAILURES ===================================
+____________________ test_format_task_report_multiple_tasks ____________________
+
+    def test_format_task_report_multiple_tasks():
+        tasks = [
+            {"id": 1, "title": "Write report"},
+            {"id": 2, "title": "Submit assignment"},
+        ]
+
+>       report = format_task_report(tasks)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab-6-solutions/test_ai_generated.py:16:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tasks = [{'id': 1, 'title': 'Write report'}, {'id': 2, 'title': 'Submit assignment'}]
+
+    def format_task_report(tasks):
+        """Build a plain-text report of all tasks."""
+        lines = []
+        for task in tasks:
+>           line = "Task #" + task["id"] + ": " + task["title"]
+                   ^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: can only concatenate str (not "int") to str
+
+app/storage.py:11: TypeError
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name             Stmts   Miss  Cover   Missing
+----------------------------------------------
+app/storage.py      16      1    94%   12
+----------------------------------------------
+TOTAL               16      1    94%
+=========================== short test summary info ============================
+FAILED lab-6-solutions/test_ai_generated.py::test_format_task_report_multiple_tasks
+========================= 1 failed, 5 passed in 0.48s ==========================

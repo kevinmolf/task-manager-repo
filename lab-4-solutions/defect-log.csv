@@ -1,0 +1,3 @@
+Defect ID,Requirement,Title,Description,Severity,Priority,Status,Lifecycle Evidence
+DEF-001,REQ-002,"Duplicate email accepted","Registration allows a user to register with an email address that is already in use instead of rejecting the registration and displaying an error.","High","High","Closed","New -> Triaged -> Assigned -> Fixed -> Verified -> Closed"
+DEF-002,REQ-007,"Incorrect overdue fine calculation","Return processing calculates an incorrect fine for an overdue book instead of applying the required P2.00 per overdue day.","High","High","Closed","New -> Triaged -> Assigned -> Fixed -> Verified -> Closed"

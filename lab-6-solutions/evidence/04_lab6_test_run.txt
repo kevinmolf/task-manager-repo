@@ -1,0 +1,76 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo
+configfile: pytest.ini
+plugins: cov-7.1.0
+collecting ... collected 12 items
+
+lab-6-solutions/test_ai_generated.py::test_format_task_report_multiple_tasks FAILED
+lab-6-solutions/test_ai_generated.py::test_format_task_report_empty_list PASSED
+lab-6-solutions/test_ai_generated.py::test_days_until_due_future_date PASSED
+lab-6-solutions/test_ai_generated.py::test_days_until_due_past_date PASSED
+lab-6-solutions/test_ai_generated.py::test_build_query_with_title PASSED
+lab-6-solutions/test_ai_generated.py::test_build_query_empty_title PASSED
+lab-6-solutions/test_manual.py::test_manual_report_contains_task_information FAILED
+lab-6-solutions/test_manual.py::test_manual_report_empty_input PASSED
+lab-6-solutions/test_manual.py::test_manual_due_date_in_the_future PASSED
+lab-6-solutions/test_manual.py::test_manual_due_date_in_the_past PASSED
+lab-6-solutions/test_manual.py::test_manual_query_exact_structure PASSED
+lab-6-solutions/test_manual.py::test_manual_query_preserves_title PASSED
+
+=================================== FAILURES ===================================
+____________________ test_format_task_report_multiple_tasks ____________________
+
+    def test_format_task_report_multiple_tasks():
+        tasks = [
+            {"id": 1, "title": "Write report"},
+            {"id": 2, "title": "Submit assignment"},
+        ]
+
+>       report = format_task_report(tasks)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab-6-solutions/test_ai_generated.py:16:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tasks = [{'id': 1, 'title': 'Write report'}, {'id': 2, 'title': 'Submit assignment'}]
+
+    def format_task_report(tasks):
+        """Build a plain-text report of all tasks."""
+        lines = []
+        for task in tasks:
+>           line = "Task #" + task["id"] + ": " + task["title"]
+                   ^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: can only concatenate str (not "int") to str
+
+app/storage.py:11: TypeError
+_________________ test_manual_report_contains_task_information _________________
+
+    def test_manual_report_contains_task_information():
+        tasks = [
+            {"id": 1, "title": "Buy groceries"},
+            {"id": 2, "title": "Study COMP 441"},
+        ]
+
+>       result = format_task_report(tasks)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab-6-solutions/test_manual.py:16:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tasks = [{'id': 1, 'title': 'Buy groceries'}, {'id': 2, 'title': 'Study COMP 441'}]
+
+    def format_task_report(tasks):
+        """Build a plain-text report of all tasks."""
+        lines = []
+        for task in tasks:
+>           line = "Task #" + task["id"] + ": " + task["title"]
+                   ^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: can only concatenate str (not "int") to str
+
+app/storage.py:11: TypeError
+=========================== short test summary info ============================
+FAILED lab-6-solutions/test_ai_generated.py::test_format_task_report_multiple_tasks
+FAILED lab-6-solutions/test_manual.py::test_manual_report_contains_task_information
+========================= 2 failed, 10 passed in 0.14s =========================

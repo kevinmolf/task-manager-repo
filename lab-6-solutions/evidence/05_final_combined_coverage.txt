@@ -1,0 +1,74 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0
+rootdir: /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo
+configfile: pytest.ini
+plugins: cov-7.1.0
+collected 12 items
+
+lab-6-solutions/test_ai_generated.py F.....                              [ 50%]
+lab-6-solutions/test_manual.py F.....                                    [100%]
+
+=================================== FAILURES ===================================
+____________________ test_format_task_report_multiple_tasks ____________________
+
+    def test_format_task_report_multiple_tasks():
+        tasks = [
+            {"id": 1, "title": "Write report"},
+            {"id": 2, "title": "Submit assignment"},
+        ]
+
+>       report = format_task_report(tasks)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab-6-solutions/test_ai_generated.py:16:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tasks = [{'id': 1, 'title': 'Write report'}, {'id': 2, 'title': 'Submit assignment'}]
+
+    def format_task_report(tasks):
+        """Build a plain-text report of all tasks."""
+        lines = []
+        for task in tasks:
+>           line = "Task #" + task["id"] + ": " + task["title"]
+                   ^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: can only concatenate str (not "int") to str
+
+app/storage.py:11: TypeError
+_________________ test_manual_report_contains_task_information _________________
+
+    def test_manual_report_contains_task_information():
+        tasks = [
+            {"id": 1, "title": "Buy groceries"},
+            {"id": 2, "title": "Study COMP 441"},
+        ]
+
+>       result = format_task_report(tasks)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab-6-solutions/test_manual.py:16:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tasks = [{'id': 1, 'title': 'Buy groceries'}, {'id': 2, 'title': 'Study COMP 441'}]
+
+    def format_task_report(tasks):
+        """Build a plain-text report of all tasks."""
+        lines = []
+        for task in tasks:
+>           line = "Task #" + task["id"] + ": " + task["title"]
+                   ^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: can only concatenate str (not "int") to str
+
+app/storage.py:11: TypeError
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name             Stmts   Miss  Cover   Missing
+----------------------------------------------
+app/storage.py      16      1    94%   12
+----------------------------------------------
+TOTAL               16      1    94%
+Coverage HTML written to dir lab-6-solutions/reports/combined-html
+=========================== short test summary info ============================
+FAILED lab-6-solutions/test_ai_generated.py::test_format_task_report_multiple_tasks
+FAILED lab-6-solutions/test_manual.py::test_manual_report_contains_task_information
+========================= 2 failed, 10 passed in 0.37s =========================

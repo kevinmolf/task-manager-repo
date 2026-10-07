@@ -1,0 +1,6 @@
+test_id,username,password,expected_result,description
+TC-001,tomsmith,SuperSecretPassword!,You logged into a secure area!,Valid credentials
+TC-002,tomsmith,WrongPassword123!,Your password is invalid!,Invalid password
+TC-003,wronguser,SuperSecretPassword!,Your username is invalid!,Invalid username
+TC-004,,SuperSecretPassword!,Username is required,Blank username
+TC-005,tomsmith,,Password is required,Blank password

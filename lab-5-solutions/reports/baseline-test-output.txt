@@ -1,0 +1,332 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo/lab-5-solutions/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo/lab-5-solutions
+configfile: pytest.ini
+plugins: base-url-2.1.0, playwright-0.9.0
+collecting ... collected 5 items
+
+tests/test_login.py::test_login_data_driven[chromium-TC-001] FAILED      [ 20%]
+tests/test_login.py::test_login_data_driven[chromium-TC-002] FAILED      [ 40%]
+tests/test_login.py::test_login_data_driven[chromium-TC-003] FAILED      [ 60%]
+tests/test_login.py::test_login_data_driven[chromium-TC-004] FAILED      [ 80%]
+tests/test_login.py::test_login_data_driven[chromium-TC-005] FAILED      [100%]
+
+=================================== FAILURES ===================================
+___________________ test_login_data_driven[chromium-TC-001] ____________________
+
+page = <Page url='https://the-internet.herokuapp.com/login'>
+test_case = {'test_id': 'TC-001', 'username': 'tomsmith', 'password': 'SuperSecretPassword!', 'expected_result': 'success', ...}
+
+    @pytest.mark.parametrize(
+        "test_case",
+        load_test_data(),
+        ids=lambda row: row["test_id"],
+    )
+    def test_login_data_driven(page: Page, test_case):
+        """
+        Execute five login scenarios from CSV test data.
+
+        TC-001 verifies successful authentication.
+        TC-002 through TC-005 verify authentication/validation errors.
+        """
+        login = LoginPage(page)
+>       login.open()
+
+tests/test_login.py:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+pages/login_page.py:19: in open
+    self.page.goto(self.URL)
+.venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:9903: in goto
+    self._sync(
+.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:562: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:157: in goto
+    await self._channel.send(
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:76: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x762e13659a60>
+cb = <function Channel.send.<locals>.<lambda> at 0x762e13365800>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+E           Call log:
+E             - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:632: TimeoutError
+___________________ test_login_data_driven[chromium-TC-002] ____________________
+
+page = <Page url='https://the-internet.herokuapp.com/login'>
+test_case = {'test_id': 'TC-002', 'username': 'tomsmith', 'password': 'WrongPassword', 'expected_result': 'invalid', ...}
+
+    @pytest.mark.parametrize(
+        "test_case",
+        load_test_data(),
+        ids=lambda row: row["test_id"],
+    )
+    def test_login_data_driven(page: Page, test_case):
+        """
+        Execute five login scenarios from CSV test data.
+
+        TC-001 verifies successful authentication.
+        TC-002 through TC-005 verify authentication/validation errors.
+        """
+        login = LoginPage(page)
+>       login.open()
+
+tests/test_login.py:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+pages/login_page.py:19: in open
+    self.page.goto(self.URL)
+.venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:9903: in goto
+    self._sync(
+.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:562: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:157: in goto
+    await self._channel.send(
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:76: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x762e13659a60>
+cb = <function Channel.send.<locals>.<lambda> at 0x762e13367ce0>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+E           Call log:
+E             - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:632: TimeoutError
+___________________ test_login_data_driven[chromium-TC-003] ____________________
+
+page = <Page url='https://the-internet.herokuapp.com/login'>
+test_case = {'test_id': 'TC-003', 'username': 'wronguser', 'password': 'SuperSecretPassword!', 'expected_result': 'invalid', ...}
+
+    @pytest.mark.parametrize(
+        "test_case",
+        load_test_data(),
+        ids=lambda row: row["test_id"],
+    )
+    def test_login_data_driven(page: Page, test_case):
+        """
+        Execute five login scenarios from CSV test data.
+
+        TC-001 verifies successful authentication.
+        TC-002 through TC-005 verify authentication/validation errors.
+        """
+        login = LoginPage(page)
+>       login.open()
+
+tests/test_login.py:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+pages/login_page.py:19: in open
+    self.page.goto(self.URL)
+.venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:9903: in goto
+    self._sync(
+.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:562: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:157: in goto
+    await self._channel.send(
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:76: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x762e13659a60>
+cb = <function Channel.send.<locals>.<lambda> at 0x762e13364220>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+E           Call log:
+E             - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:632: TimeoutError
+___________________ test_login_data_driven[chromium-TC-004] ____________________
+
+page = <Page url='https://the-internet.herokuapp.com/login'>
+test_case = {'test_id': 'TC-004', 'username': '', 'password': 'SuperSecretPassword!', 'expected_result': 'invalid', ...}
+
+    @pytest.mark.parametrize(
+        "test_case",
+        load_test_data(),
+        ids=lambda row: row["test_id"],
+    )
+    def test_login_data_driven(page: Page, test_case):
+        """
+        Execute five login scenarios from CSV test data.
+
+        TC-001 verifies successful authentication.
+        TC-002 through TC-005 verify authentication/validation errors.
+        """
+        login = LoginPage(page)
+>       login.open()
+
+tests/test_login.py:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+pages/login_page.py:19: in open
+    self.page.goto(self.URL)
+.venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:9903: in goto
+    self._sync(
+.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:562: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:157: in goto
+    await self._channel.send(
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:76: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x762e13659a60>
+cb = <function Channel.send.<locals>.<lambda> at 0x762e13366fc0>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+E           Call log:
+E             - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:632: TimeoutError
+___________________ test_login_data_driven[chromium-TC-005] ____________________
+
+page = <Page url='https://the-internet.herokuapp.com/login'>
+test_case = {'test_id': 'TC-005', 'username': 'tomsmith', 'password': '', 'expected_result': 'invalid', ...}
+
+    @pytest.mark.parametrize(
+        "test_case",
+        load_test_data(),
+        ids=lambda row: row["test_id"],
+    )
+    def test_login_data_driven(page: Page, test_case):
+        """
+        Execute five login scenarios from CSV test data.
+
+        TC-001 verifies successful authentication.
+        TC-002 through TC-005 verify authentication/validation errors.
+        """
+        login = LoginPage(page)
+>       login.open()
+
+tests/test_login.py:29:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+pages/login_page.py:19: in open
+    self.page.goto(self.URL)
+.venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py:9903: in goto
+    self._sync(
+.venv/lib/python3.12/site-packages/playwright/_impl/_page.py:562: in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv/lib/python3.12/site-packages/playwright/_impl/_frame.py:157: in goto
+    await self._channel.send(
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:76: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x762e13659a60>
+cb = <function Channel.send.<locals>.<lambda> at 0x762e133dd3a0>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+E           Call log:
+E             - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+
+.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py:632: TimeoutError
+=========================== short test summary info ============================
+FAILED tests/test_login.py::test_login_data_driven[chromium-TC-001] - playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+FAILED tests/test_login.py::test_login_data_driven[chromium-TC-002] - playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+FAILED tests/test_login.py::test_login_data_driven[chromium-TC-003] - playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+FAILED tests/test_login.py::test_login_data_driven[chromium-TC-004] - playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+FAILED tests/test_login.py::test_login_data_driven[chromium-TC-005] - playwright._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to "https://the-internet.herokuapp.com/login", waiting until "load"
+======================== 5 failed in 153.04s (0:02:33) =========================

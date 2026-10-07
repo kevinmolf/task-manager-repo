@@ -1,0 +1,52 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.1.1, pluggy-1.6.0 -- /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/kev11/Documents/school projects/COMP 441 - SOFTWARE ANALYSIS & TESTING/task-manager-repo
+configfile: pytest.ini
+plugins: cov-7.1.0
+collecting ... collected 6 items
+
+lab-6-solutions/test_manual.py::test_manual_report_contains_task_information FAILED
+lab-6-solutions/test_manual.py::test_manual_report_empty_input PASSED
+lab-6-solutions/test_manual.py::test_manual_due_date_in_the_future PASSED
+lab-6-solutions/test_manual.py::test_manual_due_date_in_the_past PASSED
+lab-6-solutions/test_manual.py::test_manual_query_exact_structure PASSED
+lab-6-solutions/test_manual.py::test_manual_query_preserves_title PASSED
+
+=================================== FAILURES ===================================
+_________________ test_manual_report_contains_task_information _________________
+
+    def test_manual_report_contains_task_information():
+        tasks = [
+            {"id": 1, "title": "Buy groceries"},
+            {"id": 2, "title": "Study COMP 441"},
+        ]
+
+>       result = format_task_report(tasks)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+lab-6-solutions/test_manual.py:16:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tasks = [{'id': 1, 'title': 'Buy groceries'}, {'id': 2, 'title': 'Study COMP 441'}]
+
+    def format_task_report(tasks):
+        """Build a plain-text report of all tasks."""
+        lines = []
+        for task in tasks:
+>           line = "Task #" + task["id"] + ": " + task["title"]
+                   ^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: can only concatenate str (not "int") to str
+
+app/storage.py:11: TypeError
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.3-final-0 ________________
+
+Name             Stmts   Miss  Cover   Missing
+----------------------------------------------
+app/storage.py      16      1    94%   12
+----------------------------------------------
+TOTAL               16      1    94%
+=========================== short test summary info ============================
+FAILED lab-6-solutions/test_manual.py::test_manual_report_contains_task_information
+========================= 1 failed, 5 passed in 0.27s ==========================

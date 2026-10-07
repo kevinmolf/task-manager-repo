@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COMP 441 Login Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 50px;
+        }
+
+        .container {
+            width: 420px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.12);
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px;
+            margin: 8px 0 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 11px;
+            cursor: pointer;
+        }
+
+        #flash {
+            margin-top: 20px;
+            padding: 12px;
+            min-height: 20px;
+        }
+
+        .success {
+            background: #d9f2df;
+            color: #176b2c;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #842029;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <h1>Login Page</h1>
+
+    <form id="login-form">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text">
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+
+        <button
+            id="login-submit"
+            class="button primary"
+            type="submit">
+            Login
+        </button>
+    </form>
+
+    <div id="flash"></div>
+</div>
+
+<script>
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const flash = document.getElementById("flash");
+
+    flash.className = "";
+
+    if (!username) {
+        flash.className = "error";
+        flash.textContent = "Username is required";
+        return;
+    }
+
+    if (!password) {
+        flash.className = "error";
+        flash.textContent = "Password is required";
+        return;
+    }
+
+    if (username === "tomsmith" && password === "SuperSecretPassword!") {
+        flash.className = "success";
+        flash.textContent = "You logged into a secure area!";
+    } else if (username !== "tomsmith") {
+        flash.className = "error";
+        flash.textContent = "Your username is invalid!";
+    } else {
+        flash.className = "error";
+        flash.textContent = "Your password is invalid!";
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+COMP 441 — LAB 4 COMPLETION AUDIT
+Student: Boago Kevin Molefi
+Student ID: 23018916
+
+REQUIREMENTS
+------------
+Expected requirements: 8
+Requirements represented in requirements.md: 8
+Requirements represented in RTM: 8
+Requirement coverage: 100%
+
+TEST CASES
+----------
+Designed test cases: 16
+Expected: 16
+Orphan test cases: 0
+
+DEFECTS
+-------
+Logged defects: 2
+Required lifecycle:
+New -> Triaged -> Assigned -> Fixed -> Verified -> Closed
+
+AI COMPARISON
+-------------
+AI assistant: Ollama
+Model: gemma4:e2b-it-q4_K_M
+
+FINAL ASSESSMENT
+----------------
+Lab 4 requirements traceability and test-management artifacts are present.
+The RTM covers all 8 supplied requirements with 16 designed test cases.
+Two sample defects are documented through the complete lifecycle.
+The AI-generated RTM evidence is preserved separately for comparison.
+
+Note:
+The RTM status is "Not Executed" because this laboratory performs
+requirements analysis and test design rather than claiming execution
+against a completed Library Management System.
